@@ -6,45 +6,40 @@ public class LOGIN {
     private String firstName;
     private String lastName;
 
-    //Constructor
-    public LOGIN(String UserName,String password, String firstName,String lastName){
-        this.UserName=UserName;
-        this.password=password;
-        this.firstName=firstName;
-        this.lastName=lastName;
-
+    // Constructor
+    public LOGIN(String UserName, String password, String firstName, String lastName) {
+        this.UserName = UserName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
-    // method to attempt login
-    public String loginUser(String enteredUserName,String enteredPassword){
 
-        Scanner scanner=new Scanner(System.in);
-        String userLogin;
-        String passwordLogin;
-
-        boolean loginSuccess = false;
-        while (!loginSuccess) {
-            System.out.print("Please re-enter your username for testlogin: ");
-            userLogin = scanner.next();
-            System.out.print("Please re-enter your password for testlogin: ");
-            passwordLogin = scanner.next();
+    // Method to attempt login
+    public String loginUser(String enteredUserName, String enteredPassword) {
 
 
-
-
-            if (userLogin.equals(UserName) && passwordLogin.equals(password)) {
-                System.out.println( "Welcome back "+" "+ this.firstName + " " + this.lastName + " " + "It is great to see you again.");
-
-                loginSuccess = true;
-
-            } else {
-                System.out.println( "Username or Password incorrect.Please try again.");
-            }
+        if (enteredUserName.equals(UserName) && enteredPassword.equals(password)) {
+            System.out.println("Welcome back " + this.firstName + " " + this.lastName + "! It's great to see you again.");
+            return "Login successful for: " + firstName;
         }
 
 
+        Scanner scanner = new Scanner(System.in);
+        boolean loginSuccess = false;
 
+        while (!loginSuccess) {
+            System.out.println("Incorrect username or password. Please try again.");
+            System.out.print("Please re-enter your username: ");
+            enteredUserName = scanner.nextLine();
+            System.out.print("Please re-enter your password: ");
+            enteredPassword = scanner.nextLine();
 
+            if (enteredUserName.equals(UserName) && enteredPassword.equals(password)) {
+                System.out.println("Welcome back " + this.firstName + " " + this.lastName + "! It's great to see you again.");
+                loginSuccess = true;
+            }
+        }
 
-        return enteredUserName;
+        return "Login successful for: " + firstName;
     }
 }
